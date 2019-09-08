@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/header::header">
+</head>
+<body style="background-image: linear-gradient(to left, black, white);">
+	<div class="wrapper  justify-content-center" style="margin-top: 50px;">
+		<div class="content col-md-6 " style="padding: 0px;">
+			<div class="card">
+				<h5 class="card-header bg-info white-text text-center py-4">
+					<strong>Sign Up</strong>
+				</h5>
+				<!--Card content-->
+				<div class="card-body px-lg-5 pt-0">
+					<!-- Form -->
+					<form style="color: #757575;" action="/User/signup" method="post" th:object="${signUpForm}"> 
+						<div class="row">
+							<!-- first name -->
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Full Name</span>
+							</div>
+							<!-- Rate -->
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="text" class="form-control" th:field="*{fullName}" 
+										placeholder="Eg. Dipendra Sing Bist">
+								</div>
+							</div>
+						</div>
+						<!-- Email address -->
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Email</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="text" class="form-control" th:field="*{login.email}"
+										placeholder="Eg. dipendrabist101@gmail.com">
+								</div>
+							</div>
+						</div>
+						<!-- Old Password -->
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Password</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="password" class="form-control pwd" th:field="*{login.password}" id="password">
+									<div class="input-group-btn">
+										<button class="btn reveal" type="button" 
+											onclick="showPassword()">
+											<i class="fa fa-eye" id="eye"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- New Password -->
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Confirm Password</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="password" class="form-control pwd" value=""
+										id="confirmPassword">
+								</div>
+							</div>
+						</div>
+						<!-- buttons -->
+						<div class="row">
+							<button
+								class="btn btn-outline-info col-md-3 bg-success btn-
+					rounded btn-block my-4 waves-effect z-depth-0"
+								type="submit" style="margin: 5px; color: #fff;">
+								<i class="fa fa-sign-in-alt"></i> Sign Up
+							</button>
+							<a th:href="@{/login}"
+								class="btn btn-outline-info bg-danger col-md-3 btn-
+					rounded btn-block my-4 waves-effect z-depth-0">
+								<i class="fa fa-times"></i> Cancel
+							</a>
+						</div>
+					</form>
+					<!-- Form -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="shared/footer::footer"></div>
+</body>
+</html>

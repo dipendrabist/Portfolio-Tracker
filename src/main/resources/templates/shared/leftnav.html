@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="leftnav">
+	<!-- Sidebar Holder -->
+	<nav id="sidebar" style="padding: 10px; margin-top: 17px;">
+		<div class="photo">
+			<img src="/images/photo.jpg" class="rounded-circle mx-auto d-block"
+				width="30%">
+			<h6 class="text">Dipendra S. Bist</h6>
+		</div>
+		<ul class="list-unstyled components">
+			<li class="active"><a th:href="home"><i class="fa fa-home"></i>Home</a></li>
+			<li><a th:href="@{/User/edit/{id}(id=${profile.profileId})}"><i class="fa fa-user-circle"></i>Profile</a></li>
+			<li><a th:href="@{/accounts/myaccounts}"><i
+					class="fa fa-university"></i>My Accounts</a></li>
+			<li><a th:href="@{/accounts/loadfund}"><i
+					class="fa fa-dollar-sign"></i>Load Fund</a></li>
+			<li><a th:href="@{/}"><i class="fa fa-swatchbook"></i>Report
+					Book</a></li>
+			<li><a th:href="@{/changepassword}"><i class="fa fa-key"></i>Change Password</a></li>
+			<li><a th:href="@{/login}"><i class="fa fa-power-off"></i>Logout</a></li>
+		</ul>
+		<ul class="list-unstyled CTAs">
+			<li><a href="#" class="download"><i class="fab fa-android"></i>
+					Portfolio Tracker App</a></li>
+		</ul>
+	</nav>
+</div>

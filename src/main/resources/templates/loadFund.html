@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/header::header">
+</head>
+<body style="background-image: linear-gradient(to left, black, white);">
+	<div class="wrapper  justify-content-center" style="margin-top: 50px;">
+		<div class="content col-md-6 " style="padding: 0px;">
+			<div class="card">
+				<h5 class="card-header bg-info white-text text-center py-4">
+					<strong>Load Fund</strong>
+				</h5>
+				<!--Card content-->
+				<div class="card-body px-lg-5 pt-0">
+					<!-- Form -->
+					<form style="color: #757575;">
+						<div class="row">
+							<!-- first name -->
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Bank Name</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<select class="browser-default custom-select" title="DEMAT">
+									<option selected>Select DEMAT</option>
+									<option value="1">0006025665005</option>
+									<option value="2">0006025665006</option>
+									<option value="3">0006025665007</option>
+									<option value="4">0006025665008</option>
+								</select>
+							</div>
+						</div>
+						<!-- a/c holder -->
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Deposit Type</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<select class="browser-default custom-select" title="Deposit Type">
+									<option selected>Cash</option>
+									<option value="1">Cheque</option>
+									
+								</select>
+							</div>
+						</div>
+						<!-- a/c no. -->
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Amount</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="text" class="form-control pwd">
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Cheque No.</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="text" class="form-control pwd" disabled="disabled">
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<button
+								class="btn btn-outline-info col-md-3 bg-success btn-
+					rounded btn-block my-4 waves-effect z-depth-0"
+								type="submit" style="margin: 5px; color: #fff;">
+								<i class="fa fa-sign-in-alt"></i>Load
+							</button>
+							<a th:href="@{/home}"
+								class="btn btn-outline-info bg-danger col-md-3 btn- rounded
+								btn-block my-4 waves-effect z-depth-0"
+								style="color: #fff"> <i class="fa fa-times"></i> Cancel
+							</a>
+						</div>
+					</form>
+					<!-- Form -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="shared/footer::footer"></div>
+</body>
+</html>

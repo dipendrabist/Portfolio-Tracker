@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="topnav">
+	<nav class="navbar navbar-expand-lg navbar-light"
+		style="background-color: #e3f2fd; padding:10px; margin-top:17px;">
+		<div class="container-fluid">
+			<button type="button" id="sidebarCollapse" class="navbar-btn"
+				style="background-color: #e3f2fd;">
+				<span></span> <span></span> <span></span>
+			</button><span> Portfolio Tracker</span>
+			<button class="btn d-inline-block d-lg-none ml-auto" id="navbarCollapse" data-toggle="collapse"
+				type="button" 
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="true"
+				aria-label="Toggle navigation">
+				<i class="fas fa-ellipsis-v"></i>
+			</button>
+			<nav id="navbar">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="nav navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="#">Setting</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-bell"></i>Notification</a>
+					</li>
+				</ul>
+			</div>
+			</nav>
+		</div>
+	</nav>
+
+</div>

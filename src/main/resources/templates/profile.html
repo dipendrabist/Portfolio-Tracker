@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shared/header::header">
+</head>
+<body style="background-image: linear-gradient(to left, black, white);">
+<div class="row">
+<div class="col-md-3 col-sm-6"></div>
+	<div class="card col-md-6" style="margin-top: 10px;">
+		<h5 class="card-header bg-info white-text text-center">
+			<strong class="text-center">Profile</strong>
+		</h5>
+		<!--Card content-->
+		<div class="card-body px-lg-5 pt-0">
+			<!-- Image upload -->
+			<div class="container">
+				<div class="picture-container">
+					<div class="picture">
+						<img src="/images/index.png" class="picture-src"
+							id="wizardPicturePreview" title=""> <input type="file"
+							onchange="previewFile()" id="wizardPicture" class="picture-src">
+					</div>
+					<h6 class="">Upload Picture</h6>
+				</div>
+			</div>
+			<!-- Form -->
+			<form style="color: #757575;" action="#" th:action="@{/Users/update/{id}(id=${profileForm.profileId})}" th:object="${profileForm}" method="post">
+				<div class="row">
+					<!-- first name -->
+					<div class="col-md-4" style="margin-top: 10px;">
+						<span>Full Name</span>
+					</div>
+					<div class="col-md-6" style="margin-top: 10px;">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								th:field="*{fullName}">
+
+						</div>
+					</div>
+				</div>
+				<!-- Email address -->
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 10px;">
+						<span>Email</span>
+					</div>
+					<div class="col-md-6" style="margin-top: 10px;">
+						<div class="input-group">
+							<input type="text" class="form-control" th:field="*{login.email}" th:value="${fullName}"
+								>
+						</div>
+					</div>
+				</div>
+				<!-- Phone -->
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 10px;">
+						<span>Phone</span>
+					</div>
+					<div class="col-md-6" style="margin-top: 10px;">
+						<div class="input-group">
+							<div class="input-group-append">
+								<button class="btn btn-info" type="button" disabled>
+									<span>+977</span>
+								</button>
+							</div>
+							<input type="text" class="form-control"
+								th:field="*{phone}">
+						</div>
+					</div>
+				</div>
+				<!-- Date of Birth -->
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 10px;">
+						<span>Date of Birth</span>
+					</div>
+					<div class="col-md-6" style="margin-top: 10px;">
+						<div class="input-group">
+							<input type="date" class="form-control"
+								th:field="*{dateOfBirth}">
+							<div class="input-group-append"></div>
+						</div>
+					</div>
+				</div>
+				<!-- Address1 -->
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 10px;">
+						<span>Address1</span>
+					</div>
+					<div class="col-md-6" style="margin-top: 10px;">
+						<div class="input-group">
+							<input type="text" class="form-control" name="address1">
+						</div>
+					</div>
+				</div>
+				<!-- Address2 -->
+				<div class="row">
+					<div class="col-md-4" style="margin-top: 10px;">
+						<span>Address2</span>
+					</div>
+					<div class="col-md-6" style="margin-top: 10px;">
+						<div class="input-group">
+							<input type="text" class="form-control" name="address2">
+						</div>
+					</div>
+				</div>
+
+				<!-- buttons -->
+				<div class="row">
+					<button
+						class="btn btn-outline-info col-md-3 bg-success btn-
+					rounded btn-block my-4 waves-effect z-depth-0"
+						type="submit" style="margin: 5px; color: #fff;">
+						<i class="fa fa-save"></i> Save Changes
+					</button>
+					<a th:href="@{/home}"
+						class="btn btn-outline-info bg-danger col-md-3 btn-
+					rounded btn-block my-4 waves-effect z-depth-0">
+						<i class="fa fa-times"></i> Cancel
+					</a>
+				</div>
+			</form>
+			<!-- Form -->
+		</div>
+	</div>
+	</div>
+	<div th:replace="shared/footer::footer"></div>
+</body>
+</html>
