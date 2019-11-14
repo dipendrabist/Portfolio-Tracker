@@ -12,18 +12,19 @@
 				<!--Card content-->
 				<div class="card-body px-lg-5 pt-0">
 					<!-- Form -->
-					<form style="color: #757575;">
+					<form style="color: #757575;" th:object="${accounts}"
+						th:action="@{/accounts/addaccount/{id}(id=${userInfo.id})}"
+						method="POST">
 						<div class="row">
 							<!-- first name -->
 							<div class="col-md-4" style="margin-top: 10px;">
 								<span>Bank Name</span>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
-								<select class="browser-default custom-select" title="Bank">
-									<option selected>Choose Bank</option>
-									<option value="1">Global</option>
-									<option value="2">BoK</option>
-									<option value="3">NIC Asia</option>
+								<select class="browser-default custom-select" title="Bank"
+									th:value="${bankId}" th:field="*{bankId}">
+									<option th:each="bankId : ${bankId}"
+										th:value="${bankId.bankName}" th:text="${bankId.bankName}"></option>
 								</select>
 							</div>
 						</div>
@@ -34,7 +35,8 @@
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="text" class="form-control">
+									<input type="text" class="form-control"
+										th:field="*{accountHolderName}">
 								</div>
 							</div>
 						</div>
@@ -45,13 +47,11 @@
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="text" class="form-control pwd">
-
+									<input type="text" class="form-control pwd"
+										th:field="*{dmatNumber}">
 								</div>
 							</div>
 						</div>
-
-
 						<div class="row">
 							<button
 								class="btn btn-outline-info col-md-3 bg-success btn-
@@ -59,7 +59,7 @@
 								type="submit" style="margin: 5px; color: #fff;">
 								<i class="fa fa-sign-in-alt"></i>ADD
 							</button>
-							<a th:href="@{/accounts/myaccounts}"
+							<a th:href="@{/accounts/myaccounts/{id}(id=${userInfo.id})}"
 								class="btn btn-outline-info bg-danger col-md-3 btn- rounded
 								btn-block my-4 waves-effect z-depth-0"
 								style="color: #fff"> <i class="fa fa-times"></i> Cancel

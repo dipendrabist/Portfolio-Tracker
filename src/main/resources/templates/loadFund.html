@@ -12,20 +12,18 @@
 				<!--Card content-->
 				<div class="card-body px-lg-5 pt-0">
 					<!-- Form -->
-					<form style="color: #757575;">
+					<form style="color: #757575;" th:action="@{/accounts/loadfund/{id}(id=${dmatNumber})}" th:object="${account}">
 						<div class="row">
 							<!-- first name -->
 							<div class="col-md-4" style="margin-top: 10px;">
-								<span>Bank Name</span>
+								<span>Account</span>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
-								<select class="browser-default custom-select" title="DEMAT">
-									<option selected>Select DEMAT</option>
-									<option value="1">0006025665005</option>
-									<option value="2">0006025665006</option>
-									<option value="3">0006025665007</option>
-									<option value="4">0006025665008</option>
-								</select>
+								<select
+							class="browser-default custom-select" title="Bank" th:field="*{dmatNumber}"
+							 >
+							<option th:each="acc: ${accounts}" th:value="${acc.dmatNumber}" th:text="${acc.dmatNumber}">
+						</select>
 							</div>
 						</div>
 						<!-- a/c holder -->
@@ -36,8 +34,6 @@
 							<div class="col-md-6" style="margin-top: 10px;">
 								<select class="browser-default custom-select" title="Deposit Type">
 									<option selected>Cash</option>
-									<option value="1">Cheque</option>
-									
 								</select>
 							</div>
 						</div>
@@ -48,23 +44,10 @@
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="text" class="form-control pwd">
-
+									<input type="number" class="form-control pwd" th:field="*{balance}">
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-4" style="margin-top: 10px;">
-								<span>Cheque No.</span>
-							</div>
-							<div class="col-md-6" style="margin-top: 10px;">
-								<div class="input-group">
-									<input type="text" class="form-control pwd" disabled="disabled">
-
-								</div>
-							</div>
-						</div>
-
 						<div class="row">
 							<button
 								class="btn btn-outline-info col-md-3 bg-success btn-

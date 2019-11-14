@@ -40,4 +40,15 @@ public class Bank {
 		this.bankName = bankName;
 	}
 
+	public Bank(Long bankId, String bankName) {
+		super();
+		this.bankId = bankId;
+		this.bankName = bankName;
+	}
+
+	@Override
+	public String toString() {
+		return "Bank [bankId=" + bankId + ", bankName=" + bankName + "]";
+	}
+
 }

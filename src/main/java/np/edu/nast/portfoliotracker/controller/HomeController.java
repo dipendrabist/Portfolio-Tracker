@@ -1,37 +1,39 @@
 package np.edu.nast.portfoliotracker.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-@Controller
-public class HomeController {
-	
-	@GetMapping("/home")
-	public String home() {
-		return "home";
-	}
-//	@GetMapping("/profile")
-//	public String profile(Model model) {
-//		System.out.print(repo.findById(2L));
-//		model.addAttribute("userProfile",repo.findById(2L));
-//		return "profile";
-//	}
-	
-//
-//	@GetMapping("/add")
-//	public String home1() {
-//		return "addDEMAT";
-//	}
-	@GetMapping("/sell")
-	public String home13() {
-		return "sellShare";
-	}
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-//	@GetMapping("/myaccounts")
-//	public String aindex() {
-//		return "myAccounts";
-//	}
-	@GetMapping("/accountinfo")
-	public String aindexs() {
-		return "accountInfo";
+import np.edu.nast.portfoliotracker.entities.User;
+import np.edu.nast.portfoliotracker.repository.UserRepository;
+
+@Controller
+@RequestMapping
+public class HomeController {
+
+	@Autowired
+	UserRepository userRepository;
+	@GetMapping("/changePassword/{id}")
+	public String showChangePasswordForm(@PathVariable("id") Integer id, Model model) {
+		User user=new User();
+		model.addAttribute("user", user);
+		return "changePassword";
+	}
+	@PostMapping("/changePassword/{id}")
+	public String updateUser(@PathVariable("id") Integer id,  User user, 
+	  BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	        user.setId(id);
+	        return "changePassword";
+	    }
+	         
+	    userRepository.save(user);
+	    model.addAttribute("users", userRepository.findAll());
+	    return "/";
 	}
 }

@@ -13,14 +13,18 @@
 				</div>
 				<div class="row px-2 no-gutters">
 					<div class="col-12">
-						<small>User Id: <span class="badge badge-success">XXXXXXXX</span></small>
+						<h6 class="text" th:text="${userInfo.name}">Dipendra S. Bist</h6>
 					</div>
 				</div>
 			</div>
 			<div class="row text-center" style="margin: 18px; padding: 0px;">
 				<div th:replace="shared/backButton::backButton"></div>
 				&nbsp;
-				<div th:replace="shared/addAccountButton::addaccount"></div>
+				<form th:action="@{/accounts/addaccount/{id}(id=${userInfo.id})}"
+					method="get">
+					<button class="btn btn-md btn-danger btn-block" name="addAccount"
+						type="Submit">Add Bank</button>
+				</form>
 			</div>
 		</div>
 		<table class="table table-striped table-dark col-md-12">
@@ -37,46 +41,14 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody id="details">
-				<tr>
-					<th scope="row">1</th>
-					<td>Global IME Bank</td>
-					<td>Dipendra Singh Bist</td>
-					<th scope="col">0006025665005</th>
-					<td>12555552</td>
-					<td>500</td>
-					<td>554562255</td>
-					<td>125552</td>
-
-					<td><a th:href="@{transactions}" class="btn"> <i
-							class="fa fa-external-link-square-alt" style="color: #fff"></i>
-					</a></td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Global IME Bank</td>
-					<td>Dipendra Singh Bist</td>
-					<th scope="col">0006025665005</th>
-					<td>12555552</td>
-					<td>500</td>
-					<td>554562255</td>
-					<td>12550052</td>
-					<td><a th:href="@{transactions}" class="btn"> <i
-							class="fa fa-external-link-square-alt" style="color: #fff"></i>
-					</a></td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Global IME Bank</td>
-					<td>Dipendra Singh Bist</td>
-					<th scope="col">0006025665005</th>
-					<td>12555552</td>
-					<td>500</td>
-					<td>554562255</td>
-					<td>12550552</td>
-					<td><a th:href="@{transactions}" class="btn"> <i
-							class="fa fa-external-link-square-alt" style="color: #fff"></i>
-					</a></td>
+			<tbody>
+				<tr th:each="acc,iterator : ${accounts}">
+				 <td th:text="${iterator.index+1}"></td>
+					<td th:text="${acc.bankId}"></td>
+					<td th:text="${acc.accountHolderName}"></td>
+					<td th:text="${acc.dmatNumber}"></td>
+					<td th:text="${acc.balance}"></td>
+					
 				</tr>
 			</tbody>
 		</table>

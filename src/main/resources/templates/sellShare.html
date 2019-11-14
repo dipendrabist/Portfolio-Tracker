@@ -19,47 +19,35 @@
 		<!--Card content-->
 		<div class="card-body px-lg-5 pt-0 text-center">
 			<!-- Form -->
-			<form class="col-md-12" style="color: #757575;" action="/"
+			<form class="col-md-12" style="color: #757575;" th:action="@{/sell/{id}(id=${userInfo.id})}" method="post"
 				th:object="${sellForm}">
 
 				<!-- share holder -->
 				<div class="row">
 					<div class="md-form col-md-6" style="margin-top: 10px;">
-						<span>Share Holder</span> <select
-							class="browser-default custom-select">
-							<option selected>Share Holder</option>
-							<option value="1">Dipendra S. Bist</option>
-							<option value="2">Sahadev Kunwar</option>
-							<option value="3">Sanjay Acharya</option>
-							<option value="4">Samit Gurung</option>
+						<span>DEMAT A/C</span>
+						 <select
+							class="browser-default custom-select" title="Bank"
+							 th:field="*{dmatId}">
+							<option th:each="acc: ${accounts}" th:value="${acc.dmatNumber}" th:text="${acc.dmatNumber}">
 						</select>
 					</div>
-					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Date</span> <span th:id="cdate" onclick="pickDate()"
-							class="form-control" style="cursor: pointer">Click for
-							Date</span>
+				
+						<div class="col-md-6" style="margin-top: 10px;">
+						<span>Date</span> <input type="date" th:field="*{transactionDate}">
 					</div>
+					
 				</div>
 				<div class="row">
 					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Symbol</span> <select class="browser-default custom-select">
-							<option selected>Symbol</option>
-							<option value="1">ADCL</option>
-							<option value="2">UPPER</option>
-							<option value="3"></option>
+						<span>Symbol</span> <select
+							class="browser-default custom-select" title="Symbol"
+							 th:field="*{companyId}">
+							<option th:each="cmpny: ${company}" th:value="${cmpny.symbol}" th:text="${cmpny.symbol}">
 						</select>
 					</div>
-					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Share Type</span> <select
-							class="browser-default custom-select">
-							<option selected>Share Type</option>
-							<option value="1">FPO</option>
-							<option value="2">IPO</option>
-							<option value="3">Secondary</option>
-						</select>
-					</div>
-				</div>
-				<div class="row">
+					
+			
 					<!-- Quantity -->
 					<div class="col-md-6" style="margin-top: 10px;">
 						<span>Quantity</span> <input type="number" th:field="*{quantity}" placeholder="Number  Only"
@@ -70,9 +58,7 @@
 						<span>Rate</span> <input type="number" th:field="*{rate}" placeholder="Number  Only"
 							class="form-control" />
 					</div>
-				</div>
 				
-				<div class="row">
 					<!-- purchase rate -->
 					<div class="col-md-6" style="margin-top: 10px;">
 						<span>Purchase Rate</span> <input type="number" th:field="*{purchaseRate}" placeholder="Number  Only"
@@ -122,7 +108,7 @@
 						</div>
 						<!-- CGT -->
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">Capital Gain Tax:</span> &nbsp;<span  class="text-dark" th:id="dpAmount"></span>
+							<span class="text">Capital Gain Tax:</span> &nbsp;<span  class="text-dark" th:id="cgt"></span>
 						</div>
 					</div>
 					<div class="row text-left">
@@ -134,7 +120,7 @@
 						</div>
 						<!-- profit/loss -->
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">Profit/Loss:</span> &nbsp;<span  class="text-dark" th:id="dpAmount"></span>
+							<span class="text">Profit/Loss:</span> &nbsp;<span  class="text-dark" th:id="pl"></span>
 						</div>
 					</div>
 				</div>
@@ -150,7 +136,7 @@
 					<button
 						class="btn btn-outline-info bg-warning col-md-4 btn-
 					rounded btn-block my-4 waves-effect z-depth-0"
-						type="button" style="margin: 5px">
+						type="submit" id="btnProceed" style="margin: 5px">
 						<i class="fa fa-eraser"></i>Proceed
 					</button>
 					<a th:href="@{/home}"

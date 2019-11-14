@@ -19,55 +19,46 @@
 		<!--Card content-->
 		<div class="card-body px-lg-5 pt-0 text-center">
 			<!-- Form -->
-			<form class="col-md-12" style="color: #757575;" action="/share/purchase" method="post"
+			<form class="col-md-12" style="color: #757575;"
+				th:action="@{/purchase/{id}(id=${userInfo.id})}" method="post"
 				th:object="${purchaseForm}">
-<span class="profileId" hidden="true"id="profile_id">1	</span>
+				<span class="profileId"  th:field="*{profileId}" th:value="${userInfo.id}"> </span> 
 				<!-- share holder -->
 				<div class="row">
 					<div class="md-form col-md-6" style="margin-top: 10px;">
-						<span>DEMAT A/C</span> <select class="browser-default custom-select" title="DEMAT" >
-						<option selected>Choose A/C</option>
-						<option value="1">0006025665005</option>
-						<option value="2">0006025665006</option>
-						<option value="3">0006025665007</option>
-						<option value="4">0006025665008</option>
-					</select>
+						<span>DEMAT A/C</span>
+						 <select
+							class="browser-default custom-select" title="Bank"
+							 th:field="*{dmatId}">
+							<option th:each="acc: ${accounts}" th:value="${acc.dmatNumber}" th:text="${acc.dmatNumber}">
+						</select>
+						
+						
 					</div>
 					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Date</span> <span th:id="cdate" onclick="pickDate()" th:field="*{transactionDate}"
-							class="form-control" style="cursor: pointer">Click for
-							Date</span>
+						<span>Date</span> <input type="date" th:field="*{transactionDate}">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Symbol</span> <select class="browser-default custom-select">
-							<option selected>Symbol</option>
-							<option value="1">ADCL</option>
-							<option value="2">UPPER</option>
-							<option value="3"></option>
+						<span>Symbol</span> 
+						<select
+							class="browser-default custom-select" title="Symbol"
+							 th:field="*{companyName}">
+							<option th:each="cmpny: ${company}" th:value="${cmpny.symbol}" th:text="${cmpny.symbol}">
 						</select>
 					</div>
-					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Share Type</span> <select
-							class="browser-default custom-select">
-							<option selected>Share Type</option>
-							<option value="1">FPO</option>
-							<option value="2">IPO</option>
-							<option value="3">Secondary</option>
-						</select>
-					</div>
-				</div>
-				<div class="row">
+
+				
 					<!-- Quantity -->
 					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Quantity</span> <input type="number" th:field="*{quantity}" placeholder="Number  Only"
-							class="form-control" />
+						<span>Quantity</span> <input type="number" th:field="*{quantity}"
+							placeholder="Number  Only" class="form-control" />
 					</div>
 					<!-- Rate -->
 					<div class="col-md-6" style="margin-top: 10px;">
-						<span>Rate</span> <input type="number" th:field="*{rate}" placeholder="Number  Only"
-							class="form-control" />
+						<span>Rate</span> <input type="number" th:field="*{rate}"
+							placeholder="Number  Only" class="form-control"/>
 					</div>
 				</div>
 				<div class="d-none" id="detail">
@@ -82,36 +73,39 @@
 					<div class="row text-left">
 						<!-- total -->
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">Share Quantity:</span> &nbsp;<span class="text-dark"
-								th:id="sQuantity"></span>
+							<span class="text">Share Quantity:</span> &nbsp;<span
+								class="text-dark" th:id="sQuantity"></span>
 						</div>
-						<!-- share amount -->
-						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">Share Amount:</span> &nbsp;<span class="text-dark"
-								th:id="shareAmount"></span>
-						</div>
+					
 					</div>
 					<!-- SEBO Commission: -->
 					<div class="row text-left">
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">SEBO Commission:</span> &nbsp;<span class="text-dark"
-								th:id="seboCommission"></span>
+							<span class="text">SEBO Commission:</span> &nbsp;<span
+								class="text-dark" th:id="seboCommission"></span>
 						</div>
+						
+						
 						<!-- commission amount -->
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">Commission Amount:</span> &nbsp;<span class="text-dark"
-								th:id="commissionAmount"></span>
+							<span class="text">Commission Amount:</span> &nbsp;<span
+								class="text-dark" th:id="commissionAmount"></span>
 						</div>
 					</div>
+					
+					
 					<!-- dp amount -->
 					<div class="row text-left">
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">DP Amount:</span> &nbsp;<span  class="text-dark" th:id="dpAmount"></span>
+							<span class="text">DP Amount</span> &nbsp;<span
+								class="text-dark" th:id="dpAmount"></span>
 						</div>
 						<!-- SEBO Commission: -->
 						<div class="col-md-6" style="margin-top: 10px;">
-							<span class="text">Net Payable Amount:</span> &nbsp;<span class="text-dark"
-								th:id="netPayableAmount"></span>
+							<span class="text">Net Payable Amount:</span> &nbsp;<span
+								class="text-dark" th:id="netAmount"></span>
+								<input type="hidden" th:field="*{netAmount}">
+
 						</div>
 					</div>
 				</div>
@@ -127,7 +121,8 @@
 					<button
 						class="btn btn-outline-info bg-warning col-md-4 btn-
 					rounded btn-block my-4 waves-effect z-depth-0"
-						type="submit" id="btnProceed" style="margin: 5px" disabled="disabled">
+						type="submit" id="btnProceed" style="margin: 5px"
+						disabled="disabled">
 						<i class="fa fa-eraser"></i>Proceed
 					</button>
 					<a th:href="@{/home}"

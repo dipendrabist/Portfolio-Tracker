@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="shared/header::header">
+<style type="text/css">
+
+</style>
 </head>
 <body style="background-image: linear-gradient(to left, black, white);">
 	<div class="wrapper  justify-content-center" style="margin-top: 50px;">
@@ -12,30 +15,53 @@
 				<!--Card content-->
 				<div class="card-body px-lg-5 pt-0">
 					<!-- Form -->
-					<form style="color: #757575;" action="/User/signup" method="post" th:object="${signUpForm}"> 
+					<form autocomplete="off"  th:action="@{/registration}"
+						th:object="${user}" method="post" class="form-horizontal"
+						role="form">
 						<div class="row">
 							<!-- first name -->
 							<div class="col-md-4" style="margin-top: 10px;">
-								<span>Full Name</span>
+								<span>First Name</span>
 							</div>
-							<!-- Rate -->
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="text" class="form-control" th:field="*{fullName}" 
+									<input type="text" class="form-control" th:field="*{name}"
 										placeholder="Eg. Dipendra Sing Bist">
 								</div>
+								<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									class="validation-message text-danger"></label>
 							</div>
 						</div>
-						<!-- Email address -->
+						<!-- last name -->
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 10px;">
+								<span>Last Name</span>
+							</div>
+							<div class="col-md-6" style="margin-top: 10px;">
+								<div class="input-group">
+									<input type="text" th:field="*{lastName}"
+										placeholder="Eg. Bist" class="form-control" />
+								</div>
+
+								<label th:if="${#fields.hasErrors('lastName')}"
+									th:errors="*{lastName}" class="validation-message text-danger"></label>
+							</div>
+						</div>
+
+						<!-- Email -->
+
 						<div class="row">
 							<div class="col-md-4" style="margin-top: 10px;">
 								<span>Email</span>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="text" class="form-control" th:field="*{login.email}"
-										placeholder="Eg. dipendrabist101@gmail.com">
+									<input type="text" th:field="*{email}"
+										placeholder="Eg. abc@xyz.com" class="form-control" />
+
 								</div>
+								<label th:if="${#fields.hasErrors('email')}"
+									th:errors="*{email}" class="validation-message text-danger"></label>
 							</div>
 						</div>
 						<!-- Old Password -->
@@ -45,25 +71,35 @@
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="password" class="form-control pwd" th:field="*{login.password}" id="password">
-									<div class="input-group-btn">
-										<button class="btn reveal" type="button" 
+									<input type="password" th:field="*{password}"
+										placeholder="Password" class="form-control" />
+
+									<!--  <span
+										class="fa  fa-fw fa-eye field-icon" id="eye"
+										onclick="showPassword()"
+										style="float: right; margin-left: -25px; margin-top:10px; position: relative; z-index: 20;"></span> -->
+									<!-- <div class="input-group-btn">
+										<button class="btn reveal" type="button"
 											onclick="showPassword()">
 											<i class="fa fa-eye" id="eye"></i>
 										</button>
-									</div>
+									</div> -->
 								</div>
+								<label th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}" class="validation-message text-danger"></label>
 							</div>
 						</div>
-						<!-- New Password -->
+						<!-- New Password 
 						<div class="row">
 							<div class="col-md-4" style="margin-top: 10px;">
 								<span>Confirm Password</span>
 							</div>
 							<div class="col-md-6" style="margin-top: 10px;">
 								<div class="input-group">
-									<input type="password" class="form-control pwd" value=""
-										id="confirmPassword">
+									<input type="password" class="form-control pwd"
+										name="confirmPassword" id="confirmPassword"> <span
+										id='message' class="fa "
+										style="float: right; margin-left: -25px; margin-top: 10px; position: relative; z-index: 20;"></span>
 								</div>
 							</div>
 						</div>
@@ -75,12 +111,16 @@
 								type="submit" style="margin: 5px; color: #fff;">
 								<i class="fa fa-sign-in-alt"></i> Sign Up
 							</button>
-							<a th:href="@{/login}"
-								class="btn btn-outline-info bg-danger col-md-3 btn-
-					rounded btn-block my-4 waves-effect z-depth-0">
-								<i class="fa fa-times"></i> Cancel
-							</a>
 						</div>
+						<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Already Registered? <a th:href="@{/login}" class="ml-2">Sign
+							In</a>
+					</div>
+				</div>
+						<h2>
+							<span class="text-success" th:utext="${successMessage}"></span>
+						</h2>
 					</form>
 					<!-- Form -->
 				</div>

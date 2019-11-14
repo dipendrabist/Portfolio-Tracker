@@ -40,6 +40,16 @@ public class Company {
 	public String toString() {
 		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", symbol=" + symbol + "]";
 	}
+	public Company(Long companyId, String companyName, String symbol) {
+		super();
+		this.companyId = companyId;
+		this.companyName = companyName;
+		this.symbol = symbol;
+	}
+	public Company() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 
 }
