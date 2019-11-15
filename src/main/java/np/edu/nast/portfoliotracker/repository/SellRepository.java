@@ -2,8 +2,8 @@ package np.edu.nast.portfoliotracker.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import np.edu.nast.portfoliotracker.entities.Login;
+import np.edu.nast.portfoliotracker.entities.Sell;
 
-public interface LoginRepository extends JpaRepository<Login, Long> {
+public interface SellRepository extends JpaRepository<Sell, Long>{
 
 }
